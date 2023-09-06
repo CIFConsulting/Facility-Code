@@ -103,6 +103,19 @@
                 },
                 "parameters": [
                     {
+                        "name": "geofenceTrustGrade",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FACILITY_PROVIDED",
+                                "LOCAL_KNOWLEDGE",
+                                "REVIEW_PANEL"
+                            ]
+                        }
+                    },
+                    {
                         "name": "Safe-Generate-Mode",
                         "in": "header",
                         "required": false,
@@ -139,6 +152,21 @@
                 "summary": "Update - Change Facility Details",
                 "tags": [
                     "Add Facility"
+                ],
+                "parameters": [
+                    {
+                        "name": "geofenceTrustGrade",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FACILITY_PROVIDED",
+                                "LOCAL_KNOWLEDGE",
+                                "REVIEW_PANEL"
+                            ]
+                        }
+                    }
                 ],
                 "requestBody": {
                     "content": {
