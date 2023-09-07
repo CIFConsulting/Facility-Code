@@ -116,6 +116,15 @@
                         }
                     },
                     {
+                        "name": "geofenceRemarks",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Facility has a private road included in the geofence."
+                        }
+                    },
+                    {
                         "name": "Safe-Generate-Mode",
                         "in": "header",
                         "required": false,
@@ -165,6 +174,15 @@
                                 "LOCAL_KNOWLEDGE",
                                 "REVIEW_PANEL"
                             ]
+                        }
+                    },
+                    {
+                        "name": "geofenceRemarks",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Facility has a private road included in the geofence."
                         }
                     }
                 ],
