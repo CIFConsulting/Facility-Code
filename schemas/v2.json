@@ -422,6 +422,18 @@
                             "type": "number",
                             "example": 1000
                         }
+                    },
+                    {
+                        "name": "codeProvider",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "BIC",
+                                "SMDG"
+                            ]
+                        }
                     }
                 ],
                 "responses": {
@@ -585,6 +597,27 @@
                             "type": "string",
                             "example": "Springfield Illinois 62704"
                         }
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "GB"
+                        }
+                    },
+                    {
+                        "name": "codeProvider",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "BIC",
+                                "SMDG"
+                            ]
+                        }
                     }
                 ],
                 "security": [
@@ -600,7 +633,21 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Facility"
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/Facility"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "searchScore": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "description": "A relevance score calculated by the search engine indicating how well this facility matches the search query. Higher scores indicate a better match for the specific query. The score is based on factors like term frequency and inverse document frequency, and is not a percentage or a fixed-range value; its magnitude is relative to other results for the same query."
+                                                    }
+                                                }
+                                            }
+                                        ]
                                     }
                                 }
                             }
