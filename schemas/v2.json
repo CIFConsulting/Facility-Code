@@ -784,7 +784,8 @@
                 "type": "object",
                 "required": [
                     "name",
-                    "address"
+                    "address",
+                    "geographicalCoordinate"
                 ],
                 "properties": {
                     "name": {
