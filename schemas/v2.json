@@ -25,6 +25,45 @@
             "description": "UAT Environment"
         }
     ],
+    "x-amazon-apigateway-gateway-responses": {
+        "MISSING_AUTHENTICATION_TOKEN": {
+            "statusCode": 404,
+            "responseParameters": {
+                "gatewayresponse.header.Access-Control-Allow-Origin": "'*'"
+            },
+            "responseTemplates": {
+                "application/json": "{\"status\":404,\"message\":\"Endpoint not found. See the documentation for the list of available endpoints.\",\"documentation\":\"https://docs.bic-code.org\",\"openapi\":\"https://docs.bic-code.org/bfc-api-v2.json\",\"support\":\"bic@bic-code.org\"}"
+            }
+        },
+        "UNAUTHORIZED": {
+            "statusCode": 401,
+            "responseParameters": {
+                "gatewayresponse.header.Access-Control-Allow-Origin": "'*'"
+            },
+            "responseTemplates": {
+                "application/json": "{\"status\":401,\"message\":\"Missing or invalid Authorization header. Use 'Authorization: Bearer <accessToken>' from POST /oauth/token.\",\"documentation\":\"https://docs.bic-code.org/guides/bic-facility-code/api#authentication\"}"
+            }
+        },
+        "ACCESS_DENIED": {
+            "statusCode": 403,
+            "responseParameters": {
+                "gatewayresponse.header.Access-Control-Allow-Origin": "'*'"
+            },
+            "responseTemplates": {
+                "application/json": "{\"status\":403,\"message\":\"You do not have permission to access this resource.\",\"documentation\":\"https://docs.bic-code.org/guides/bic-facility-code/api\"}"
+            }
+        },
+        "DEFAULT_4XX": {
+            "responseParameters": {
+                "gatewayresponse.header.Access-Control-Allow-Origin": "'*'"
+            }
+        },
+        "DEFAULT_5XX": {
+            "responseParameters": {
+                "gatewayresponse.header.Access-Control-Allow-Origin": "'*'"
+            }
+        }
+    },
     "paths": {
         "/oauth/token": {
             "post": {
