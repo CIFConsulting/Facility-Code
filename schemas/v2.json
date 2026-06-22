@@ -866,6 +866,10 @@
                     "countryCode": {
                         "$ref": "#/components/schemas/CountryCode"
                     },
+                    "facilityManaged": {
+                        "type": "boolean",
+                        "description": "Indicates whether the facility is actively managed."
+                    },
                     "unLocode": {
                         "$ref": "#/components/schemas/UnLocode"
                     },
