@@ -1436,6 +1436,15 @@
                     "trustGrade": {
                         "$ref": "#/components/schemas/TrustGrade"
                     },
+                    "proposerRole": {
+                        "type": "string",
+                        "description": "Why the requester is proposing this facility: they are the facility owner/operator, or they act on the owner's behalf",
+                        "enum": [
+                            "OWNER",
+                            "ON_BEHALF"
+                        ],
+                        "example": "OWNER"
+                    },
                     "remarks": {
                         "type": "string",
                         "maxLength": 150,
