@@ -922,7 +922,7 @@
         "/facilities/request/new": {
             "post": {
                 "summary": "Change Request - Propose a brand-new facility",
-                "description": "Propose a new facility. Body: proposedFacility (POST /facilities shape, unLocode mandatory, no code), optional geoJson boundary, trustGrade, remarks. A candidate code is allocated and returned; it is NOT accepted until an approver confirms the request.",
+                "description": "Propose a new facility. Body: proposedFacility (POST /facilities shape, unLocode mandatory), optional requestedCodeSuffix, optional geoJson boundary, trustGrade, remarks. To request a specific code, send requestedCodeSuffix (4 letters); the candidate code is the UN/LOCODE plus that suffix, and the submit is refused with a 409 if the code is already in use or already proposed. Without it, a free code is allocated. The candidate code is returned; it is NOT accepted until an approver confirms the request.",
                 "tags": [
                     "Change Requests"
                 ],
@@ -1511,7 +1511,7 @@
             },
             "NewFacilityRequestPost": {
                 "title": "New Facility Request Post Schema",
-                "description": "A proposal for a brand-new facility. The proposedFacility uses the same shape as POST /facilities (unLocode is mandatory, no code is posted). A candidate facility code is allocated and returned immediately, but it is NOT an accepted code until a reviewer confirms the request.",
+                "description": "A proposal for a brand-new facility. The proposedFacility uses the same shape as POST /facilities (unLocode is mandatory). A specific code can be requested with requestedCodeSuffix; otherwise one is allocated. The candidate facility code is returned immediately, but it is NOT an accepted code until a reviewer confirms the request.",
                 "type": "object",
                 "required": [
                     "proposedFacility",
@@ -1520,6 +1520,12 @@
                 "properties": {
                     "proposedFacility": {
                         "$ref": "#/components/schemas/FacilityPost"
+                    },
+                    "requestedCodeSuffix": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z]{4}$",
+                        "description": "Optional. The 4-letter suffix of the code you want; the requested code is the UN/LOCODE plus this suffix. Refused with a 409 if that code is already in use or already has an open proposal. Omit it to have a free code allocated.",
+                        "example": "BARG"
                     },
                     "geoJson": {
                         "description": "Proposed geofence as a GeoJSON FeatureCollection (may also be supplied as proposedFacility.facility.geographicalFeature)",
